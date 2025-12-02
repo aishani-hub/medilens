@@ -1,0 +1,8 @@
+[
+  { "name": "penicillin", "allergyRisk": "penicillin", "ingredients": ["penicillin"] },
+  { "name": "aspirin", "allergyRisk": "aspirin", "ingredients": ["aspirin"] },
+  { "name": "ibuprofen", "allergyRisk": "ibuprofen", "ingredients": ["ibuprofen"] },
+  { "name": "paracetamol", "allergyRisk": null, "ingredients": ["paracetamol"] },
+  { "name": "cough syrup", "allergyRisk": null, "ingredients": ["alcohol", "sugar", "flavoring"] },
+  { "name": "cetirizine", "allergyRisk": null, "ingredients": ["cetirizine"] }
+]
