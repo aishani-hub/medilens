@@ -1,8 +1,10 @@
+
+
 // Medicine database
 const medicineDatabase = [
-    { name: "Crocin",  "ingredients": ["paracetamol", "starch"] },
-    { name: "Salon", "ingredients": ["methyl salicylate", "menthol"] },
-    { name: "Cough Syrup",  "ingredients": ["dextromethorphan", "guaifenesin"] },
+    { name: "Crocin", ingredients: ["paracetamol", "starch"] },
+    { name: "Salon", ingredients: ["methyl salicylate", "menthol"] },
+    { name: "Cough Syrup", ingredients: ["dextromethorphan", "guaifenesin"] },
     { name: "Paracetamol", ingredients: ["paracetamol", "starch"] },
     { name: "Ibuprofen", ingredients: ["ibuprofen", "cellulose"] },
     { name: "Amoxicillin", ingredients: ["amoxicillin", "magnesium stearate"] },
@@ -52,14 +54,12 @@ const medicineDatabase = [
     { name: "Naproxen", ingredients: ["naproxen", "microcrystalline cellulose"] }
 ];
 
-
 // DOM elements
 const medicineInput = document.getElementById("medicineInput");
 const medicineDropdown = document.getElementById("medicineDropdown");
 const submitBtn = document.getElementById("submitBtn");
 const resultText = document.getElementById("resultText");
 const resultBox = document.getElementById("resultBox");
-
 
 // Fill dropdown
 medicineDatabase.forEach(med => {
@@ -69,20 +69,19 @@ medicineDatabase.forEach(med => {
     medicineDropdown.appendChild(option);
 });
 
-
 // Sync dropdown → input
 medicineDropdown.addEventListener("change", () => {
-    medicineInput.value = medicineDropdown.options[medicineDropdown.selectedIndex].text;
+    medicineInput.value = medicineDropdown.value;
 });
 
 // Sync input → dropdown
 medicineInput.addEventListener("input", () => {
-    const val = medicineInput.value.toLowerCase();
-    medicineDropdown.value = val;
+    const userText = medicineInput.value.toLowerCase();
+    const match = [...medicineDropdown.options].find(o => o.value === userText);
+    medicineDropdown.value = match ? match.value : "";
 });
 
-
-// Submit button logic
+// Submit logic
 submitBtn.addEventListener("click", () => {
 
     const name = document.getElementById("patientName").value.trim();
@@ -90,7 +89,8 @@ submitBtn.addEventListener("click", () => {
     const allergies = document.getElementById("allergies").value
         .toLowerCase()
         .split(",")
-        .map(a => a.trim());
+        .map(a => a.trim())
+        .filter(a => a);
 
     if (!name || !medicine) {
         resultBox.style.borderColor = "#ef6c00";
@@ -105,7 +105,6 @@ submitBtn.addEventListener("click", () => {
         return;
     }
 
-    // Find medicine
     const found = medicineDatabase.find(m => m.name.toLowerCase() === medicine);
     if (!found) {
         resultBox.style.borderColor = "#ef6c00";
@@ -113,7 +112,6 @@ submitBtn.addEventListener("click", () => {
         return;
     }
 
-    // Check allergies
     const risk = found.ingredients.find(ing =>
         allergies.includes(ing.toLowerCase())
     );
@@ -127,6 +125,3 @@ submitBtn.addEventListener("click", () => {
         resultText.textContent = `${name} → ${found.name} is safe. ✅`;
     }
 });
-
-
-
