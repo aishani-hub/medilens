@@ -1,6 +1,6 @@
 // Medicine database
 const medicineDatabase = [
-    { name: "Crrcin", "allergyRisk": "paracetamol", "ingredients": ["paracetamol"] },
+    { name: "Crocin", "allergyRisk": "paracetamol", "ingredients": ["paracetamol"] },
     { name: "Salon", "allergyRisk": "methyl salicylate", "ingredients": ["methyl salicylate", "menthol"] },
     { name: "Cough Syrup", "allergyRisk": "dextromethorphan", "ingredients": ["dextromethorphan", "guaifenesin"] }
     { name: "Paracetamol", ingredients: ["paracetamol", "starch"] },
@@ -127,4 +127,5 @@ submitBtn.addEventListener("click", () => {
         resultText.textContent = `${name} → ${found.name} is safe. ✅`;
     }
 });
+
 
