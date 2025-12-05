@@ -1,72 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prescription Checker</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medilens – Medicine Allergy Checker</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="wrapper">
 
   <!-- HEADER -->
-  <header>      <img src="logo (2).png" alt="Logo" class="footer-logo">
-
-      <h1>Medilens</h1>
+  <header>
+    <img src="logo (2).png" class="footer-logo" alt="Logo">
+    <h1>Medilens</h1>
   </header>
 
   <!-- MAIN CONTENT -->
   <div class="container">
 
-      <!-- PATIENT DETAILS -->
-      <div class="card">
-          <h2>Patient Details</h2>
-          <div class="grid">
-              <input type="text" id="patientName" placeholder="Patient Name">
-              <input type="number" id="age" placeholder="Age">
-              <input type="number" id="weight" placeholder="Weight (kg)">
-              <input type="number" id="height" placeholder="Height (cm)">
-              <select id="gender">
-                  <option value="">Gender</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Other</option>
-              </select>
-          </div>
+    <!-- PATIENT DETAILS -->
+    <div class="card">
+      <h2>Patient Details</h2>
+      <div class="grid">
+        <input type="text" id="patientName" placeholder="Patient Name">
+        <input type="number" id="age" placeholder="Age">
+        <input type="number" id="weight" placeholder="Weight (kg)">
+        <input type="number" id="height" placeholder="Height (cm)">
+        <select id="gender">
+          <option value="">Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- MEDICINE DETAILS -->
+    <div class="card">
+      <h2>Medicine Information</h2>
+      <div class="grid">
+        <select id="medicineDropdown">
+          <option value="">Select a medicine</option>
+        </select>
+        <input type="text" id="medicineInput" placeholder="Type medicine if not in list" style="display:none;">
+        <input type="text" id="allergies" placeholder="Known Allergies (comma separated)">
       </div>
 
-      <!-- MEDICINE DETAILS -->
-      <div class="card">
-          <h2>Medicine Information</h2>
-          <div class="grid">
-              <input type="text" id="medicine" placeholder="Medicine Name">
-             
-              <input type="text" id="allergies" placeholder="Known Allergies (comma separated)">
-          </div>
+      <textarea id="notes" placeholder="Additional Notes..."></textarea>
 
-          <textarea id="notes" placeholder="Additional Notes..."></textarea>
-
-          <div class="button-row">
-              <button class="btn small-btn" id="submitBtn">Submit</button>
-          </div>
+      <div class="button-row">
+        <button class="btn small-btn" id="submitBtn">Submit</button>
       </div>
+    </div>
 
-      <!-- RESULT BOX -->
-      <div id="resultBox" class="result-box">
-          <h3>Result</h3>
-          <p id="resultText">Your result will appear here...</p>
-      </div>
+    <!-- RESULT BOX -->
+    <div id="resultBox" class="result-box">
+      <h3>Result</h3>
+      <p id="resultText">Your result will appear here...</p>
+    </div>
 
   </div>
 
   <!-- FOOTER -->
   <footer>
-      <div class="footer-text">
-          <p><strong>Medilens</strong></p>
-          <p>Created by <strong>Aaishanee</strong> | Project</p>
-          <p>&copy; 2025 All rights reserved</p>
-      </div>
+    <div class="footer-text">
+      <p><strong>Medilens</strong></p>
+      <p>Created by <strong> Presciption Pioneers</strong> | Project</p>
+      <p>&copy; 2025 All rights reserved</p>
+    </div>
   </footer>
 
 </div>
