@@ -1,5 +1,3 @@
-
-
 // Medicine database
 const medicineDatabase = [
     { name: "Crocin", ingredients: ["paracetamol", "starch"] },
@@ -21,37 +19,7 @@ const medicineDatabase = [
     { name: "Metronidazole", ingredients: ["metronidazole", "starch"] },
     { name: "Pantoprazole", ingredients: ["pantoprazole", "mannitol"] },
     { name: "Doxycycline", ingredients: ["doxycycline", "lactose"] },
-    { name: "Tramadol", ingredients: ["tramadol", "microcrystalline cellulose"] },
-    { name: "Prednisolone", ingredients: ["prednisolone", "starch"] },
-    { name: "Hydrocortisone", ingredients: ["hydrocortisone", "lactose"] },
-    { name: "Benadryl Cough Syrup", ingredients: ["diphenhydramine", "sucrose"] },
-    { name: "Clarithromycin", ingredients: ["clarithromycin", "lactose"] },
-    { name: "Ciprofloxacin", ingredients: ["ciprofloxacin", "microcrystalline cellulose"] },
-    { name: "Fluconazole", ingredients: ["fluconazole", "starch"] },
-    { name: "Atorvastatin", ingredients: ["atorvastatin", "calcium carbonate"] },
-    { name: "Losartan", ingredients: ["losartan", "magnesium stearate"] },
-    { name: "Simvastatin", ingredients: ["simvastatin", "lactose"] },
-    { name: "Clopidogrel", ingredients: ["clopidogrel", "hydroxypropyl cellulose"] },
-    { name: "Warfarin", ingredients: ["warfarin", "lactose"] },
-    { name: "Furosemide", ingredients: ["furosemide", "starch"] },
-    { name: "ORS", ingredients: ["sodium chloride", "potassium chloride"] },
-    { name: "Vicks", ingredients: ["menthol", "camphor"] },
-    { name: "Salbutamol", ingredients: ["salbutamol", "lactose"] },
-    { name: "Glucose powder", ingredients: ["glucose", "calcium phosphate"] },
-    { name: "Dextromethorphan", ingredients: ["dextromethorphan", "sucrose"] },
-    { name: "Chlorpheniramine", ingredients: ["chlorpheniramine", "lactose"] },
-    { name: "Domperidone", ingredients: ["domperidone", "microcrystalline cellulose"] },
-    { name: "Iron + Folic Acid", ingredients: ["ferrous sulfate", "folic acid"] },
-    { name: "Calcium carbonate", ingredients: ["calcium carbonate", "magnesium stearate"] },
-    { name: "Multivitamins", ingredients: ["vitamin A", "vitamin D"] },
-    { name: "Antacid syrup", ingredients: ["aluminium hydroxide", "magnesium hydroxide"] },
-    { name: "Hydrocortisone cream", ingredients: ["hydrocortisone", "paraffin"] },
-    { name: "Clotrimazole", ingredients: ["clotrimazole", "benzyl alcohol"] },
-    { name: "Loperamide", ingredients: ["loperamide", "lactose"] },
-    { name: "Vitamin C", ingredients: ["ascorbic acid", "sucrose"] },
-    { name: "Zinc tablets", ingredients: ["zinc sulfate", "starch"] },
-    { name: "Levocetirizine", ingredients: ["levocetirizine", "lactose"] },
-    { name: "Naproxen", ingredients: ["naproxen", "microcrystalline cellulose"] }
+    { name: "Tramadol", ingredients: ["tramadol", "microcrystalline cellulose"] }
 ];
 
 // DOM elements
@@ -69,23 +37,29 @@ medicineDatabase.forEach(med => {
     medicineDropdown.appendChild(option);
 });
 
-// Sync dropdown → input
+// Show/hide input when selecting "other"
 medicineDropdown.addEventListener("change", () => {
-    medicineInput.value = medicineDropdown.value;
+    if (medicineDropdown.value === "other") {
+        medicineInput.style.display = "block";
+        medicineInput.value = "";
+        medicineInput.focus();
+    } else {
+        medicineInput.style.display = "none";
+        medicineInput.value = medicineDropdown.value;
+    }
 });
 
-// Sync input → dropdown
-medicineInput.addEventListener("input", () => {
-    const userText = medicineInput.value.toLowerCase();
-    const match = [...medicineDropdown.options].find(o => o.value === userText);
-    medicineDropdown.value = match ? match.value : "";
-});
-
-// Submit logic
+// Submit check
 submitBtn.addEventListener("click", () => {
 
     const name = document.getElementById("patientName").value.trim();
-    const medicine = medicineInput.value.trim().toLowerCase();
+
+    // final medicine value
+    const medicine =
+        medicineDropdown.value === "other"
+            ? medicineInput.value.trim().toLowerCase()
+            : medicineDropdown.value.trim().toLowerCase();
+
     const allergies = document.getElementById("allergies").value
         .toLowerCase()
         .split(",")
@@ -125,3 +99,5 @@ submitBtn.addEventListener("click", () => {
         resultText.textContent = `${name} → ${found.name} is safe. ✅`;
     }
 });
+
+
